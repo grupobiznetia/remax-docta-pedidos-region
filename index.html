@@ -36,6 +36,20 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             border-color: var(--remax-blue);
         }
+        .logo-container {
+            background: white;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+        }
+        /* Custom scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
 <body class="pb-24">
@@ -44,10 +58,9 @@
     <header class="remax-gradient text-white py-6 px-4 mb-8 shadow-2xl border-b-4 border-red-600">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-6 w-full md:w-auto">
-                <!-- LOGO PNG ORIGINAL INCRUSTADO (BASE64) -->
-                <div class="bg-white p-2 rounded-xl shadow-lg border-2 border-white">
+                <div class="logo-container">
                     <img src="logo.png" 
-                         alt="RE/MAX Docta" 
+                         alt="RE/MAX Docta Logo" 
                          class="h-16 md:h-20 w-auto object-contain"
                          onerror="this.src='https://storage.googleapis.com/artifacts-api-images/2f8477d2-e3c6-462a-aadb-af378c9d2365'">
                 </div>
@@ -55,64 +68,104 @@
                 <div class="h-14 w-px bg-white/20 hidden md:block"></div>
                 
                 <div>
-                    <h1 class="text-2xl md:text-4xl font-black tracking-tighter uppercase italic">Inteligencia Comercial</h1>
-                    <p class="text-blue-200 text-sm font-medium tracking-wide">Reporte de Demanda Real • Abril 2026</p>
+                    <h1 class="text-2xl md:text-4xl font-black tracking-tighter uppercase italic leading-none mb-1">Inteligencia Comercial</h1>
+                    <p class="text-blue-200 text-sm font-medium tracking-wide opacity-80">Dashboard de Demanda Real • Actualizado 15/04/2026</p>
                 </div>
             </div>
             
             <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center md:text-right w-full md:w-auto">
                 <p class="text-xs text-blue-100 uppercase font-black tracking-widest mb-1 italic">Agencia Córdoba</p>
-                <p class="text-2xl font-bold italic text-white uppercase">RE/MAX DOCTA</p>
+                <p class="text-2xl font-bold italic text-white uppercase tracking-tight">RE/MAX DOCTA</p>
             </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4">
         
-        <!-- BUSCADOR -->
+        <!-- RESUMEN EJECUTIVO TOP 3 -->
+        <section class="mb-10">
+            <h2 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <i class="fas fa-fire text-red-500"></i> Top Oportunidades de Cierre Semanal
+            </h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-red-600 text-white p-5 rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-black uppercase opacity-80 mb-1">#1 Prioridad Máxima</p>
+                        <h3 class="font-bold text-lg leading-tight mb-2 italic">Reserva Caída Sierras Chicas</h3>
+                        <p class="text-xs opacity-90 italic">"Para comprar ya, 3D con pileta. u$s 130k."</p>
+                    </div>
+                    <i class="fas fa-trophy absolute -bottom-2 -right-2 text-6xl opacity-10"></i>
+                </div>
+                <div class="bg-blue-700 text-white p-5 rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-black uppercase opacity-80 mb-1">#2 Efectivo en Mano</p>
+                        <h3 class="font-bold text-lg leading-tight mb-2 italic">1 Dorm Gral Paz/Cofico</h3>
+                        <p class="text-xs opacity-90 italic">"Plata en mano, cliente filtrado. u$s 52k."</p>
+                    </div>
+                    <i class="fas fa-money-bill-wave absolute -bottom-2 -right-2 text-6xl opacity-10"></i>
+                </div>
+                <div class="bg-slate-800 text-white p-5 rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-black uppercase opacity-80 mb-1">#3 Perfil Inversor</p>
+                        <h3 class="font-bold text-lg leading-tight mb-2 italic">Casa Barrio Cerrado Norte</h3>
+                        <p class="text-xs opacity-90 italic">"Apto Crédito Nación. u$s 150k."</p>
+                    </div>
+                    <i class="fas fa-building absolute -bottom-2 -right-2 text-6xl opacity-10"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUSCADOR Y FILTROS -->
         <section class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 mb-10">
             <div class="flex flex-col lg:flex-row gap-6 items-center">
                 <div class="w-full lg:flex-1 relative">
                     <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" id="searchInput" 
-                        placeholder="Buscar zona, agente o descripción de pedido..." 
+                        placeholder="Buscar por barrio, precio, agente o prioridad..." 
                         class="w-full pl-14 pr-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all font-medium"
                         onkeyup="filterCards()">
                 </div>
-                <div class="w-full lg:w-auto flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                    <button onclick="filterType('todos')" class="filter-btn active px-6 py-3 rounded-2xl text-xs font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Todos</button>
-                    <button onclick="filterType('Depto')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-xs font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Deptos</button>
-                    <button onclick="filterType('Casa')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-xs font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Casas</button>
-                    <button onclick="filterType('Lote')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-xs font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Lotes</button>
+                <div class="w-full lg:w-auto flex gap-2 overflow-x-auto pb-2 custom-scroll">
+                    <button onclick="filterType('todos')" class="filter-btn active px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Todos</button>
+                    <button onclick="filterType('Depto')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Deptos</button>
+                    <button onclick="filterType('Casa')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Casas</button>
+                    <button onclick="filterType('Lote')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Lotes</button>
+                    <button onclick="filterType('Comercial')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Comercial</button>
+                    <button onclick="filterType('Alquiler')" class="filter-btn bg-white text-slate-600 px-6 py-3 rounded-2xl text-[10px] font-black border border-slate-200 transition-all whitespace-nowrap uppercase">Alquiler</button>
                 </div>
             </div>
         </section>
 
-        <!-- GRID -->
+        <!-- GRID DE PEDIDOS -->
         <div id="requestsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Cargado por JS -->
+            <!-- Cargado por JavaScript -->
         </div>
 
         <div id="noResults" class="hidden text-center py-20">
             <i class="fas fa-search text-5xl text-slate-300 mb-4"></i>
-            <h3 class="text-xl font-bold text-slate-800">No se encontraron resultados</h3>
-            <p class="text-slate-500">Intenta con otros términos.</p>
+            <h3 class="text-xl font-bold text-slate-800">No se encontraron pedidos</h3>
+            <p class="text-slate-500">Prueba con otros términos de búsqueda.</p>
         </div>
     </main>
 
     <script>
-        // Datos basados en el documento InformeInteligencia_REMAX_Docta_Abr2026.docx
+        // Base de datos procesada de los chats y el informe anterior
         const requests = [
-            { cat: "Depto", zona: "Alta Cba / Cofico", desc: "1 dorm, max 10 años, con pileta en edificio. Firma próxima semana.", nombre: "+54 9 351 873-3771", tel: "5493518733771", fecha: "01/04", prio: "⭐⭐⭐ EFECTIVO", quote: "u$s 62.000" },
-            { cat: "Depto", zona: "Zona Sur / Gral Paz", desc: "Depto buen estado, acepta permuta vehículo nuevo + efectivo.", nombre: "+54 9 351 819-2805", tel: "5493518192805", fecha: "01/04", prio: "⭐⭐ PERMUTA", quote: "u$s 75.000" },
-            { cat: "Depto 1D", zona: "Milenica / Harmonie", desc: "Complejo cerrado tipo Milenica, 1 dorm. Hasta 120k.", nombre: "+54 9 351 811-6415", tel: "5493518116415", fecha: "08/04", prio: "⭐⭐ LENDAR", quote: "u$s 120.000" },
-            { cat: "Depto 1D", zona: "Centro / Gral Paz / Alberdi", desc: "PLATA EN MANO, CLIENTE FILTRADO. 1 dorm con ascensor y gas.", nombre: "Daniela Asesora", tel: "5493513292415", fecha: "10/04", prio: "⭐⭐⭐ EFECTIVO", quote: "u$s 52.000" },
-            { cat: "Depto 2D", zona: "Gral Paz / Z. Norte", desc: "Calidad, cochera, orientado al SUR. Inversor.", nombre: "Martin Trejo", tel: "5493515510657", fecha: "11/04", prio: "⭐⭐⭐ CONTADO", quote: "u$s 180.000" },
-            { cat: "Casa 3D", zona: "Río Ceballos / Unquillo", desc: "RESERVA CAÍDA. 3 dorm, patio y pileta. PARA COMPRAR YA.", nombre: "+54 9 351 346-2754", tel: "5493513462754", fecha: "08/04", prio: "⭐⭐⭐ URGENTE", quote: "u$s 130.000" },
-            { cat: "Casa", zona: "V. Belgrano / Urca", desc: "Cocina con isla, galería, cochera, escritura.", nombre: "Ana Ruffa", tel: "5493512362544", fecha: "06/04", prio: "⭐⭐ CALIFICADO", quote: "u$s 160.000" },
-            { cat: "Casa 2D", zona: "Alto Alberdi / Obrero", desc: "Mudanza inmediata por venta propia.", nombre: "Axel Gadau", tel: "5493513028213", fecha: "11/04", prio: "⭐⭐⭐ URGENTE", quote: "u$s 60.000" },
-            { cat: "Lote", zona: "Villa Warcalde", desc: "500-600 m2, PLANO requisito excluyente.", nombre: "+54 9 351 258-1359", tel: "5493512581359", fecha: "07/04", prio: "⭐⭐ CALIFICADO", quote: "u$s 180.000" },
-            { cat: "Galpón", zona: "Zona Norte / Circunvalación", desc: "600-1000 m2. Entrada camiones, oficinas.", nombre: "G. Santa Fe", tel: "5493516629988", fecha: "13/04", prio: "⭐⭐⭐ EMPRESA", quote: "Consultar" }
+            // NUEVOS PEDIDOS (15/04/2026)
+            { cat: "Depto 2D", zona: "General Paz", desc: "2 dorm, 2 baños, amenities. APTO CRÉDITO (escritura y planos). Puede estar alquilado.", nombre: "Valentin Minguez", tel: "5493512345678", fecha: "15/04", prio: "⭐⭐ APTO CRÉDITO", quote: "u$s 120.000", quoteNum: 120000, raw: "BÚSQUEDA - gral paz - 120.000 usd - 2 D - 2 baños - amenities - APTO crédito" },
+            { cat: "Casa 3D", zona: "Barrio Cerrado (Zona Norte)", desc: "Casa en barrio cerrado, 3 dorm. Buscando comprar ya.", nombre: "Jesica Vélez", tel: "5493512345679", fecha: "15/04", prio: "⭐⭐ APTO NACIÓN", quote: "u$s 150.000", quoteNum: 150000, raw: "Búsqueda! estoy buscando comprar una casa, en lo posible en barrio cerrado en zona norte usd150.000 apta crédito" },
+            { cat: "Alquiler Depto", zona: "Gral Paz / Cofico", desc: "1 o 2 dormitorios, zona tranquila. Inquilino filtrado.", nombre: "Gabriela Vega", tel: "5493512345680", fecha: "15/04", prio: "⭐ ESTÁNDAR", quote: "Consultar", quoteNum: 0, raw: "Busqueda Urgente inquilino busca departamento 1 o 2 dormitorios, zona tranquila" },
+            
+            // PEDIDOS ANTERIORES (01/04 - 13/04)
+            { cat: "Galpón", zona: "Zona Norte / Circunvalación", desc: "600-1000 m2. Entrada camiones, oficinas para empresa.", nombre: "G. Santa Fe", tel: "5493516629988", fecha: "13/04", prio: "⭐⭐⭐ EMPRESA", quote: "Consultar", quoteNum: 0, raw: "Pedido para empresa logística 600m2 mínimo" },
+            { cat: "Depto 2D", zona: "Gral Paz / Z. Norte", desc: "Calidad, cochera, orientado al SUR. Inversor directo.", nombre: "Martin Trejo", tel: "5493515510657", fecha: "11/04", prio: "⭐⭐⭐ CONTADO", quote: "u$s 180.000", quoteNum: 180000, raw: "Inversor busca depto 2 dorm calidad premium" },
+            { cat: "Casa 2D", zona: "Alto Alberdi / Obrero", desc: "Mudanza inmediata por venta propia. Urgente.", nombre: "Axel Gadau", tel: "5493513028213", fecha: "11/04", prio: "⭐⭐⭐ URGENTE", quote: "u$s 60.000", quoteNum: 60000, raw: "Busqueda urgente por mudanza" },
+            { cat: "Depto 1D", zona: "Centro / Gral Paz / Alberdi", desc: "PLATA EN MANO, CLIENTE FILTRADO. 1 dorm con ascensor y gas.", nombre: "Daniela Asesora", tel: "5493513292415", fecha: "10/04", prio: "⭐⭐⭐ EFECTIVO", quote: "u$s 52.000", quoteNum: 52000, raw: "PLATA EN MANO, CLIENTE FILTRADO" },
+            { cat: "Depto 1D", zona: "Milenica / Harmonie", desc: "Complejo cerrado tipo Milenica, 1 dorm. Calificado Lendar.", nombre: "+54 9 351 811-6415", tel: "5493518116415", fecha: "08/04", prio: "⭐⭐ LENDAR", quote: "u$s 120.000", quoteNum: 120000, raw: "dpto milenica zona norte... hasta 120 mil" },
+            { cat: "Casa 3D", zona: "Río Ceballos / Unquillo", desc: "RESERVA CAÍDA. 3 dorm, patio y pileta. PARA COMPRAR YA.", nombre: "+54 9 351 346-2754", tel: "5493513462754", fecha: "08/04", prio: "⭐⭐⭐ URGENTE", quote: "u$s 130.000", quoteNum: 130000, raw: "para comprar ya por reserva caída" },
+            { cat: "Lote", zona: "Villa Warcalde", desc: "500-600 m2, PLANO requisito excluyente. Inmediato.", nombre: "+54 9 351 258-1359", tel: "5493512581359", fecha: "07/04", prio: "⭐⭐ CALIFICADO", quote: "u$s 180.000", quoteNum: 180000, raw: "Busco lote plano en Villa Warcalde" },
+            { cat: "Casa", zona: "V. Belgrano / Urca", desc: "Cocina con isla, galería, cochera, escritura.", nombre: "Ana Ruffa", tel: "5493512362544", fecha: "06/04", prio: "⭐⭐ CALIFICADO", quote: "u$s 160.000", quoteNum: 160000, raw: "Busqueda casa zona norte con escritura" },
+            { cat: "Depto", zona: "Alta Cba / Cofico", desc: "1 dorm, max 10 años, con pileta en edificio. Firma próxima semana.", nombre: "+54 9 351 873-3771", tel: "5493518733771", fecha: "01/04", prio: "⭐⭐⭐ EFECTIVO", quote: "u$s 62.000", quoteNum: 62000, raw: "hasta u$s62.000 efectivo. Si gusta la semana próxima estamos firmando" }
         ];
 
         function renderCards(data) {
@@ -128,15 +181,18 @@
 
             data.forEach(item => {
                 let badgeClass = "bg-slate-100 text-slate-500 border-slate-200";
-                if(item.prio.includes("⭐⭐⭐")) badgeClass = "bg-red-50 text-red-600 border-red-200";
-                else if(item.prio.includes("⭐⭐")) badgeClass = "bg-blue-50 text-blue-600 border-blue-200";
+                if(item.prio.includes("⭐⭐⭐") || item.prio.includes("URGENTE") || item.prio.includes("EFECTIVO")) {
+                    badgeClass = "bg-red-50 text-red-600 border-red-200";
+                } else if(item.prio.includes("⭐⭐") || item.prio.includes("APTO")) {
+                    badgeClass = "bg-blue-50 text-blue-600 border-blue-200";
+                }
 
                 const card = document.createElement('div');
-                card.className = "card-entry bg-white rounded-[2rem] p-6 flex flex-col cursor-default shadow-sm";
+                card.className = "card-entry bg-white rounded-[2rem] p-6 flex flex-col cursor-default shadow-sm h-full";
                 card.innerHTML = `
                     <div class="flex justify-between items-start mb-5">
                         <span class="text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border ${badgeClass}">${item.prio}</span>
-                        <span class="text-[11px] text-slate-400 font-bold">${item.fecha}</span>
+                        <span class="text-[11px] text-slate-400 font-bold italic">${item.fecha}</span>
                     </div>
                     
                     <div class="mb-4">
@@ -144,20 +200,28 @@
                         <h3 class="text-xl font-bold text-slate-900 leading-tight">${item.zona}</h3>
                     </div>
                     
-                    <p class="text-slate-600 mb-6 flex-1 italic text-[0.95rem]">"${item.desc}"</p>
+                    <div class="flex-1 mb-6">
+                        <p class="text-slate-600 italic text-[0.92rem] leading-relaxed mb-3">"${item.desc}"</p>
+                        <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter mb-1">Cita del Chat</p>
+                            <p class="text-[10px] text-slate-500 truncate italic">${item.raw}</p>
+                        </div>
+                    </div>
                     
-                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl mb-6">
-                        <p class="text-[11px] font-black text-slate-900 uppercase tracking-wide">Ppto Máximo: ${item.quote}</p>
+                    <div class="bg-blue-50/50 border border-blue-100 p-4 rounded-2xl mb-6">
+                        <p class="text-[12px] font-black text-blue-900 uppercase tracking-wide flex items-center gap-2">
+                            <i class="fas fa-tag"></i> Presupuesto: ${item.quote}
+                        </p>
                     </div>
                     
                     <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px] shadow-lg">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <div class="w-10 h-10 flex-shrink-0 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-[10px] shadow-lg">
                                 RX
                             </div>
-                            <div class="flex flex-col">
+                            <div class="flex flex-col overflow-hidden">
                                 <span class="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">Referente</span>
-                                <span class="text-[12px] font-bold text-slate-800 truncate max-w-[120px]">${item.nombre}</span>
+                                <span class="text-[11px] font-bold text-slate-800 truncate">${item.nombre}</span>
                             </div>
                         </div>
                         <a href="https://wa.me/${item.tel}" 
@@ -171,28 +235,33 @@
             });
         }
 
+        let currentFilter = 'todos';
+
         function filterCards() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = requests.filter(r => 
-                r.zona.toLowerCase().includes(query) || 
-                r.desc.toLowerCase().includes(query) || 
-                r.nombre.toLowerCase().includes(query) ||
-                r.cat.toLowerCase().includes(query)
-            );
+            const filtered = requests.filter(r => {
+                const matchesSearch = 
+                    r.zona.toLowerCase().includes(query) || 
+                    r.desc.toLowerCase().includes(query) || 
+                    r.nombre.toLowerCase().includes(query) ||
+                    r.cat.toLowerCase().includes(query) ||
+                    r.prio.toLowerCase().includes(query);
+                
+                const matchesType = currentFilter === 'todos' || r.cat.toLowerCase().includes(currentFilter.toLowerCase());
+                
+                return matchesSearch && matchesType;
+            });
             renderCards(filtered);
         }
 
         function filterType(type) {
+            currentFilter = type;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            if(event) event.target.classList.add('active');
-            
-            if(type === 'todos') renderCards(requests);
-            else {
-                const filtered = requests.filter(r => r.cat.toLowerCase().includes(type.toLowerCase()));
-                renderCards(filtered);
-            }
+            event.target.classList.add('active');
+            filterCards();
         }
 
+        // Inicialización
         window.onload = () => renderCards(requests);
     </script>
 </body>
